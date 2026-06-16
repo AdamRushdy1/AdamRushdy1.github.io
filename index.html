@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adam Rushdy - Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================
+       TOKENS
+    ===================== */
+    :root {
+      --bg:        #F5F4F0;
+      --surface:   #FFFFFF;
+      --border:    #DDDBD4;
+      --border-strong: #B8B4A8;
+      --text-primary:   #1A1916;
+      --text-secondary: #5C5A54;
+      --text-tertiary:  #9B9890;
+      --accent:    #1B4FBF;
+      --accent-bg: #EBF0FB;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+      --radius: 6px;
+      --max-w: 860px;
+    }
+
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* =====================
+       LAYOUT
+    ===================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* =====================
+       NAV
+    ===================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-name {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--text-primary); text-decoration: none; }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero-name {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .hero-bio {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-stat-val {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 12px;
+      transition: border-color 0.15s;
+    }
+    .contact-chip:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* =====================
+       SECTION HEADERS
+    ===================== */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* =====================
+       PROJECT CARDS - FEATURED
+    ===================== */
+    .projects-featured {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .proj-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(27,79,191,0.08);
+    }
+
+    /* Photo slot - replace src with your image path */
+    .proj-photo {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-photo-placeholder {
+      width: 100%;
+      height: 220px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+    }
+
+    .proj-body { padding: 24px; }
+    .proj-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .proj-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .proj-badge.wip {
+      background: #FFF3E0;
+      color: #B05000;
+    }
+    .proj-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+    .proj-name {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .proj-tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* Spec line - the signature element */
+    .proj-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: var(--bg);
+    }
+    .spec-item {
+      flex: 1;
+      min-width: 100px;
+      padding: 10px 14px;
+      border-right: 1px solid var(--border);
+    }
+    .spec-item:last-child { border-right: none; }
+    .spec-val {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .spec-key {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .proj-tag {
+      font-size: 12px;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 3px 8px;
+      background: var(--bg);
+    }
+
+    /* Detail sections inside card */
+    .proj-detail {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .proj-detail-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+    .proj-detail p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .proj-detail p:last-child { margin-bottom: 0; }
+
+    /* =====================
+       PROJECT CARDS - SECONDARY
+    ===================== */
+    .projects-secondary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .sec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: border-color 0.15s;
+    }
+    .sec-card:hover { border-color: var(--border-strong); }
+    .sec-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .sec-context {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+    .sec-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .sec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .sec-tag {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 7px;
+    }
+
+    /* =====================
+       EXPERIENCE
+    ===================== */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-role {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .exp-org {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 2px;
+    }
+    .exp-bullets {
+      grid-column: 1 / -1;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .exp-bullets li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '-';
+      position: absolute;
+      left: 0;
+      color: var(--text-tertiary);
+      font-family: var(--mono);
+    }
+
+    /* =====================
+       SKILLS
+    ===================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .skill-group {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: var(--surface);
+    }
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .skill-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+    }
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 600px) {
+      .hero-name { font-size: 30px; }
+      .hero-stats { gap: 20px; }
+      .proj-specs { flex-direction: column; }
+      .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .spec-item:last-child { border-bottom: none; }
+      .nav-links { display: none; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-date { text-align: left; }
+    }
+
+    @media print {
+      nav { display: none; }
+      .proj-card, .sec-card, .skill-group { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-name">Adam Rushdy</span>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="mailto:adrushdy@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <header class="hero">
+      <p class="hero-eyebrow">Engineering Portfolio</p>
+      <h1 class="hero-name">Adam Rushdy</h1>
+      <p class="hero-title">Aeronautical & Astronautical Engineering at Purdue University</p>
+      <p class="hero-bio">
+        Purdue University Aeronautical and Astronautical Engineering student with interests in aircraft design, aerodynamics, flight mechanics, and aerospace systems engineering. 
+        Passionate about applying engineering principles to the development, analysis, and optimization of flight vehicles.
+      </p>
+      <div class="hero-contacts">
+        <a class="contact-chip" href="mailto:adrushdy@gmail.com">
+          ✉ adrushdy@gmail.com
+        </a>
+        <a class="contact-chip" href="https://linkedin.com/in/adamrushdy" target="_blank">
+          in linkedin.com/in/adamrushdy
+        </a>
+        <a class="contact-chip" href="resume.pdf" target="_blank">
+          ↓ Resume (PDF)
+        </a>
+
+        <!-- <a class="contact-chip" href="https://github.com/AdamRushdy1" target="_blank">⌥ GitHub</a> -->
+      </div>
+    </header>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-header">
+        <span class="section-label">Featured Projects</span>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="projects-featured">
+
+        <!-- PROJECT 1: UAV -->
+        <article class="proj-card">
+
+          <img class="proj-photo" src="images/plane.jpg" alt="Fixed-wing UAV on the ground before maiden flight" />
+
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-badge">Vehicle Design</span>
+              <span class="proj-date">Mar - Jun 2026</span>
+            </div>
+            <h2 class="proj-name">Fixed-Wing Surveillance UAV</h2>
+            <p class="proj-tagline">
+              Designed, analyzed, and fabricated a 1.3 m fixed-wing aircraft from scratch -
+              airfoil selection through maiden flight, with FPV video integration.
+            </p>
+
+            <div class="proj-specs">
+              <div class="spec-item">
+                <div class="spec-val">1.3 m</div>
+                <div class="spec-key">Wingspan</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">1.7 kg</div>
+                <div class="spec-key">All-up weight</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">20 km</div>
+                <div class="spec-key">Range</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">~16 m/s</div>
+                <div class="spec-key">Cruise speed</div>
+              </div>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">SolidWorks</span>
+              <span class="proj-tag">XFLR5</span>
+              <span class="proj-tag">XFOIL</span>
+              <span class="proj-tag">Carbon-fiber layup</span>
+              <span class="proj-tag">3D printing</span>
+              <span class="proj-tag">Raspberry Pi</span>
+            </div>
+
+            <div class="proj-detail">
+              <p class="proj-detail-title">What I did</p>
+              <p>
+                Selected airfoils in XFOIL and sized wing geometry for cruise performance. Used NACA 2415 for main 
+                wing for forgiving stall characteristics and allowance for some surface imperfection. Ran full 
+                stability analysis in XFLR5, iterating on CG, tail moment arm, and geometry to hit a 12.5% static 
+                margin. Designed the wing structure for a 3g load factor using carbon-fiber skin over 3D-printed internal 
+                ribs and spars, supported by carbon-fiber rods.
+              </p>
+              <p>
+                Built a parallel foam-board testbed to validate flight controller configuration before maiden flight and
+                caught 4 configuration issues before they became airborne problems. Actual weight came in at 1.7 kg
+                vs. 1.5 kg predicted with mass growth attributed mainly to composite skin thickness uncertainty as well 
+                as 3d printing infill uncertainty. Implemented ArduPilot on F405 flight controller for data logging, 
+                increased stability, and an extra safety precation.
+              </p>
+
+              <img src="images/plane structure.jpg" alt="Internal structure" style="width:49%;border-radius:4px;margin-top:12px;" />
+              <img src="images/wing assembly.jpg" alt="Wing structure" style="width:45%;border-radius:4px;margin-top:12px;" />
+              <img src="images/Plane Assembly.png" alt="CAD Assembly" style="width:100%;border-radius:4px;margin-top:12px;" />
+              
+          </div>
+        </article>
+
+        <!-- PROJECT 2: INS -->
+        <article class="proj-card">
+          <img src="images/INS.jpg" alt="INS Hardware" style="width:100%;border-radius:4px;margin-top:12px;" />
+
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-badge">Software / Autonomy</span>
+              <span class="proj-badge wip">In Progress</span>
+              <span class="proj-date">May 2026 – Present</span>
+            </div>
+            <h2 class="proj-name">9-State Inertial Navigation System</h2>
+            <p class="proj-tagline">
+              ESP-32 + IMU + GPS + magnetometer fused via complementary and Kalman filters for
+              6-DOF state estimation at 40 Hz - benchmarked against flight controller logs.
+            </p>
+
+            <div class="proj-specs">
+              <div class="spec-item">
+                <div class="spec-val">9</div>
+                <div class="spec-key">State variables</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">40 Hz</div>
+                <div class="spec-key">Update rate</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">&lt;5 m</div>
+                <div class="spec-key">Position error target</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">&lt;5°</div>
+                <div class="spec-key">Attitude error target</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">&lt;20 m/min</div>
+                <div class="spec-key">GPS-out drift target</div>
+              </div>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Signal Filtering</span>
+              <span class="proj-tag">ESP-32</span>
+              <span class="proj-tag">Sensor fusion</span>
+            </div>
+
+            <div class="proj-detail">
+              <p class="proj-detail-title">What I'm building</p>
+              <p>
+                A 9-state INS estimating position (x,y,z), velocity (x,y,z), and attitude (roll, pitch, yaw)
+                from fused sensor data. The complementary filter handles fast attitude estimation with IMU and magnetometer data, while the Kalman filter
+                fuses GPS and IMU streams for position and velocity estimation. End goal is to implement Extended Kalman Filter, fusing all 9 data streams to predict the non-linear system
+              </p>
+              <p>
+                Building the filter from first principles rather than using a library with the goal of understand
+                every failure mode and iterate on algorithm for higher precision estimation. Validating system by 
+                testing live data streams and later benchmarking all outputs against a trustworhty flight controller autopilot log.
+              </p>
+              <a href="https://github.com/AdamRushdy1/INS-project" target="_blank" style="font-size:13px;color:var(--accent);">→ View on GitHub</a>
+            </div>
+            <img src="images/attitudeDemo.gif" alt="attitude gif" style="width:50%;border-radius:4px;margin-top:12px;"/>
+
+          </div>
+        </article>
+
+        <!-- PROJECT 3: PART eVTOL -->
+        <article class="proj-card">
+          <img src="images/PART Plane Assembly.png" alt="PART plane assembly" style="width:100%;border-radius:4px;margin-top:12px;" />
+
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-badge">Vehicle Design</span>
+              <span class="proj-date">Sep 2025 – Present</span>
+            </div>
+            <h2 class="proj-name">eVTOL Airframe - Purdue Aerial Robotics Team</h2>
+            <p class="proj-tagline">
+              Wing structure and tail assembly design and fabrication for a team eVTOL aircraft with composite construction.
+            </p>
+
+            <div class="proj-specs">
+              <div class="spec-item">
+                <div class="spec-val">9</div>
+                <div class="spec-key">Components designed</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">2</div>
+                <div class="spec-key">CNC molds</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">2 hr</div>
+                <div class="spec-key">Mfg constraint</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-val">2</div>
+                <div class="spec-key">Wing assemblies built</div>
+              </div>
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">SolidWorks</span>
+              <span class="proj-tag">Fusion 360 CAM</span>
+              <span class="proj-tag">MATLAB</span>
+              <span class="proj-tag">CNC milling</span>
+              <span class="proj-tag">Carbon-fiber layup</span>
+              <span class="proj-tag">Teamcenter</span>
+            </div>
+
+            <div class="proj-detail">
+              <p class="proj-detail-title">My contributions</p>
+              <p>
+                Designed 9 wing structure and tail assembly components in SolidWorks, keeping modulaitry in 
+                mind. Developed CAM toolpaths in Fusion 360 for CNC machining of 2 precision carbon-fiber 
+                layup molds within a 2-hour manufacturing window.
+              </p>
+              <p>
+                Developed a MATLAB optimization to find rib spacing that minimizes structural weight while
+                preventing panel buckling by analizing stresses in between internal ribs along span. 
+                Fabricated 2 composite wing assemblies using carbon-fiber layup over laser-cut internal 
+                structures.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects-featured -->
+    </section>
+
+    <!-- SECONDARY PROJECTS -->
+    <section class="section" id="additional">
+      <div class="section-header">
+        <span class="section-label">Additional Projects</span>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="projects-secondary">
+
+        <div class="sec-card">
+          <p class="sec-name">Autonomous Rover - Mars Terrain</p>
+          <p class="sec-context">Purdue ENGR 16X · Fall 2024 · Team</p>
+          <p class="sec-desc">
+            LEGO + Raspberry Pi rover navigating terrain and obstacles, following a line,
+            and depositing cargo at a location determined by magnetic beacon localization.
+          </p>
+          <div class="sec-tags">
+            <span class="sec-tag">Python</span>
+            <span class="sec-tag">Raspberry Pi</span>
+            <span class="sec-tag">Sensor fusion</span>
+            <span class="sec-tag">Autonomy</span>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <p class="sec-name">Disaster Relief Delivery Robot</p>
+          <p class="sec-context">Purdue ENGR 16X · Spring 2025 · Team</p>
+          <p class="sec-desc">
+            Maze-navigating robot with real-time path mapping, IR and magnetic obstacle avoidance,
+            and autonomous cargo delivery with no pre-loaded map.
+          </p>
+          <div class="sec-tags">
+            <span class="sec-tag">Python</span>
+            <span class="sec-tag">Raspberry Pi</span>
+            <span class="sec-tag">Path mapping</span>
+            <span class="sec-tag">Obstacle avoidance</span>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <p class="sec-name">Arduino Curriculum - STEP</p>
+          <p class="sec-context">Purdue STEP Internship · Summer 2025</p>
+          <p class="sec-desc">
+            Designed and delivered a modular Arduino programming curriculum to 320 prospective
+            engineers, teaching foundation programming skills from zero experience.
+          </p>
+          <div class="sec-tags">
+            <span class="sec-tag">Arduino</span>
+            <span class="sec-tag">C++</span>
+            <span class="sec-tag">Curriculum design</span>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <p class="sec-name">Heat Exchanger Performance Testing</p>
+          <p class="sec-context">Xchanger Internship · 2026</p>
+          <p class="sec-desc">
+            Velocity traversals across 9 flow conditions, improving flow-rate measurement
+            accuracy by ~10% and identifying a ~3× model underestimation in predicted pressure-drop across air-to-air heat exchanger units.
+          </p>
+          <div class="sec-tags">
+            <span class="sec-tag">Experimental</span>
+            <span class="sec-tag">Data analysis</span>
+            <span class="sec-tag">Fluid mechanics</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-header">
+        <span class="section-label">Skills</span>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <p class="skill-group-label">CAD & Analysis</p>
+          <div class="skill-items">
+            <span class="skill-item">SolidWorks</span>
+            <span class="skill-item">Fusion 360 (CAM)</span>
+            <span class="skill-item">NX / Teamcenter</span>
+            <span class="skill-item">XFLR5</span>
+            <span class="skill-item">XFOIL</span>
+            <span class="skill-item">Simulink</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-label">Programming</p>
+          <div class="skill-items">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">MATLAB</span>
+            <span class="skill-item">C / C++</span>
+            <span class="skill-item">Java</span>
+            <span class="skill-item">Arduino</span>
+            <span class="skill-item">Git/GitHub</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-label">Fabrication</p>
+          <div class="skill-items">
+            <span class="skill-item">Carbon-fiber layup</span>
+            <span class="skill-item">3D printing (FDM)</span>
+            <span class="skill-item">CNC milling</span>
+            <span class="skill-item">Laser cutting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <div class="footer-text">
+      Adam Rushdy · Purdue AAE · adrushdy@gmail.com · Updated June 2026
+    </div>
+  </footer>
+
+</body>
+</html>
