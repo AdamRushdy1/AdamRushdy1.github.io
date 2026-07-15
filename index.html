@@ -586,7 +586,7 @@
                 <div class="spec-key">Range</div>
               </div>
               <div class="spec-item">
-                <div class="spec-val">~20 m/s</div>
+                <div class="spec-val">~25 m/s</div>
                 <div class="spec-key">Cruise speed</div>
               </div>
             </div>
@@ -603,7 +603,7 @@
             <div class="proj-detail">
               <p class="proj-detail-title">What I did</p>
               <p>
-                Selected airfoils in XFOIL and sized wing geometry for cruise performance at around 20 m/s. Used NACA 2415 for main 
+                Selected airfoils in XFOIL and sized wing geometry for cruise performance at around 25 m/s. Used NACA 2415 for main 
                 wing for forgiving stall characteristics and allowance for some surface imperfection. Ran full 
                 stability analysis in XFLR5, iterating on CG, tail moment arm, and geometry to hit a 12.5% static 
                 margin. Designed the wing structure for a 6g load factor using carbon-fiber skin over 3D-printed internal 
@@ -614,7 +614,8 @@
                 caught 4 configuration issues before they became airborne problems. Actual weight came in at 1.8 kg
                 vs. 1.5 kg predicted with mass growth attributed mainly to composite skin thickness uncertainty as well 
                 as 3d printing infill uncertainty. Implemented ArduPilot on F405 flight controller for data logging, 
-                increased stability, and an extra safety precaution.
+                increased stability, and an extra safety precaution. Validated design (loading, cruise speed, stability) 
+                maiden flight and flight controller log data.
               </p>
 
               <img src="images/XFLR5View.png" alt="Internal structure" style="width:49%;border-radius:4px;margin-top:12px;" />
