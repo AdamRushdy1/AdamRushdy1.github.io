@@ -683,10 +683,14 @@
                 Building the filter from first principles rather than using a library with the goal of understand
                 every failure mode and iterate on algorithm for higher precision estimation. Validating system by 
                 testing live data streams and later benchmarking all outputs against a trustworhty flight controller autopilot log.
+                Found issues with position attenuation and improved estimation by ~62% by re-tuning Kalman filter noise covariance matrices.
+                Achieved a root mean square position error of 4.9 meters, achieving goal of under 5 meters, validated against ArduPilot
+                EKF position log.
               </p>
               <a href="https://github.com/AdamRushdy1/INS-project" target="_blank" style="font-size:13px;color:var(--accent);">→ View on GitHub</a>
             </div>
             <img src="images/attitudeDemo.gif" alt="attitude gif" style="width:50%;border-radius:4px;margin-top:12px;"/>
+            <img src="images/stateCompPlot.png" alt="attitude gif" style="width:50%;border-radius:4px;margin-top:12px;"/>
 
           </div>
         </article>
